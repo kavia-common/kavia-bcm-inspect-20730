@@ -264,13 +264,13 @@ const TableMessage = ({ headers, rows }) => {
         <ActionButton
           onClick={onE2EDiagramClick}
           label="E2E Business"
-          className="bg-blue-600 hover:bg-blue-700 text-white focus:ring-blue-500"
+          className="bg-gradient-to-r from-teal-600 to-teal-700 hover:bg-green-700 text-white focus:ring-blue-500"
         />
         <ActionButton
           onClick={onDiagramClick}
           // label="Generate Diagram from table data"
           label="Business Capability"
-          className="bg-blue-600 hover:bg-blue-700 text-white focus:ring-blue-500"
+          className="bg-gradient-to-r from-teal-600 to-teal-700 hover:bg-green-700 text-white focus:ring-blue-500"
         />
         <ActionButton
           onClick={downloadCSV}

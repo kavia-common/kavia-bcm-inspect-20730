@@ -11,15 +11,16 @@ const SubmitButton = ({ isLoading, onClick, disabled }) => {
         px-6 py-2 rounded-lg font-medium transition-all duration-200
         ${
           disabled || isLoading
-            ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-            : "bg-blue-500 text-white hover:bg-blue-600 active:bg-blue-700"
+            ? "bg-teal-400 text-gray-100 cursor-not-allowed"
+            : "bg-gradient-to-r from-teal-600 to-teal-700 text-white hover:from-teal-700 hover:to-teal-800"
         }
-        focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50
+        focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50
+        shadow-md hover:shadow-lg
       `}
       aria-label={isLoading ? "Submitting..." : "Submit message"}
       aria-disabled={disabled || isLoading}
     >
-      <div className="flex items-center justify-center space-x-2">
+      <div className="flex items-center justify-center space-x-2 ">
         {isLoading ? (
           <>
             <LoadingSpinner />

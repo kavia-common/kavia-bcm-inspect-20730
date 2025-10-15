@@ -236,7 +236,7 @@ const InputBox = forwardRef(
             onKeyDown={handleKeyDown}
             onFocus={handleFocus}
             onBlur={handleBlur}
-            className={`w-full px-4 py-2 text-gray-700 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none transition-[height] duration-200 min-h-[42px] ${
+            className={`w-full px-4 py-2 text-gray-700 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-gradient-to-r from-teal-600 to-teal-700 focus:border-transparent resize-none transition-[height] duration-200 min-h-[42px] ${
               disabled ? "opacity-50 cursor-not-allowed" : ""
             }`}
             disabled={disabled}

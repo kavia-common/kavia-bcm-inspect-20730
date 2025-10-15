@@ -227,9 +227,9 @@ const Message = ({
           max-w-[75%] p-3 rounded-lg
           ${
             type === "user"
-              ? "bg-blue-700 text-white rounded-br-none"
+              ? "bg-gradient-to-r from-teal-600 to-teal-700 text-white rounded-br-none"
               : isWelcomeMessage
-              ? "bg-gradient-to-r from-blue-600 via-purple-500 to-blue-600 p-6 rounded-lg text-white shadow-lg border border-blue-400"
+              ? "bg-gradient-to-r from-green-600 via-purple-500 to-blue-600 p-6 rounded-lg text-white shadow-lg border border-blue-400"
               : "bg-white text-gray-800 shadow-sm rounded-bl-none"
           }
         `}

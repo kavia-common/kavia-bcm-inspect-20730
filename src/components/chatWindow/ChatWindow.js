@@ -120,7 +120,7 @@ const ChatWindow = ({ messages = [], onAddMessage }) => {
   return (
     <div
       ref={containerRef}
-      className="flex flex-col h-[calc(100vh-80px)] sm:h-[550px] overflow-y-auto bg-gradient-to-br from-blue-50 via-white to-purple-50 rounded-lg p-4 space-y-4 shadow-lg border border-blue-200"
+      className="flex flex-col h-[calc(100vh-80px)] sm:h-[550px] overflow-y-auto bg-gradient-to-br from-green-50 via-white to-purple-50 rounded-lg p-4 space-y-4 shadow-lg border border-green-200"
       role="log"
       aria-live="polite"
       aria-atomic="false"
@@ -128,7 +128,7 @@ const ChatWindow = ({ messages = [], onAddMessage }) => {
       onScroll={handleScroll}
       style={{
         scrollbarWidth: "thin",
-        scrollbarColor: "rgba(147, 197, 253, 0.5) transparent",
+        scrollbarColor: "rgba(75, 134, 103, 0.5) transparent",
       }}
     >
       <div className="p-4 flex flex-col h-[calc(90vh-80px)] sm:h-[calc(90vh-120px)]">
