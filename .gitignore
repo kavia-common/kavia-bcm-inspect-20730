@@ -28,3 +28,4 @@ logs/
 /package-lock.json
 
 /gitignore
+.file_activity_report.json

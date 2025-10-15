@@ -131,16 +131,40 @@ const InputBox = forwardRef(
       }
     }, [maintainFocus, inputValue, focusInput, blurInput]);
 
+    // Handle keyboard submission:
+    // - Enter sends the message (prevent default newline)
+    // - Shift+Enter inserts newline
+    // We also await onSubmit if it returns a Promise to avoid clearing input before it is processed.
     const handleKeyDown = useCallback(
-      (e) => {
+      async (e) => {
         if (e.key === "Escape") {
-          clearInput();
-          // Maintain focus after clearing
-          focusInput();
-        } else if (e.key === "Enter" && !e.shiftKey && inputValue.trim()) {
-          onSubmit?.(inputValue);
+          e.preventDefault();
           clearInput();
           focusInput();
+          return;
+        }
+
+        if (e.key === "Enter" && !e.shiftKey) {
+          // Prevent textarea newline and form submit default
+          e.preventDefault();
+
+          const trimmed = inputValue.trim();
+          if (!trimmed) return;
+
+          try {
+            const maybePromise = onSubmit?.(trimmed);
+            if (maybePromise && typeof maybePromise.then === "function") {
+              await maybePromise;
+            }
+            // Clear after successful submit
+            clearInput();
+          } catch (err) {
+            // If submit failed, keep the input so user can retry/edit
+            // Optionally, could show an error via parent handler
+            // console.error("Submit failed:", err);
+          } finally {
+            focusInput();
+          }
         }
       },
       [clearInput, focusInput, inputValue, onSubmit]

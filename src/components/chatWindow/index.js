@@ -462,6 +462,7 @@ function AIChat({ initialMessages = [], onMessagesUpdate }) {
                   inputValue={inputValue}
                   handleChange={handleChange}
                   clearInput={clearInput}
+                  onSubmit={handleSubmit}
                 />
               </div>
               <div className="flex-none">
