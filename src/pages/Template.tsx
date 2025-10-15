@@ -5,7 +5,7 @@ import { Card } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import { Building2, Folder, FileText, Info, ChevronUp, ChevronDown } from "lucide-react";
 import Button from "@mui/material/Button";
-import { fetchTemplateCorecapability } from "apis";
+import { fetchTemplateCorecapability, fetchTemplateDomainByCapability } from "apis";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Template = () => {
@@ -16,14 +16,46 @@ const Template = () => {
   const fetchCapabilities = async () => {
     try {
       const data = await fetchTemplateCorecapability();
-      setCapabilityList(data);
+      setCapabilityList(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error("Error fetching capabilities:", error);
     }
   };
 
+  // New: fetch capabilities and enrich each capability with totalDomainCount (domains mapped)
+  const fetchCapabilitiesWithDomainCounts = async () => {
+    try {
+      const coreCapabilities: any[] = (await fetchTemplateCorecapability()) || [];
+
+      // Fetch domain lists for each capability in parallel (use same query shape as other parts)
+      const domainResults = await Promise.all(
+        coreCapabilities.map((core: any) =>
+          fetchTemplateDomainByCapability ? fetchTemplateDomainByCapability(`core_id=${core.id}`) : Promise.resolve([])
+        )
+      );
+
+      // Map capabilities to include totalDomainCount (number of domains mapped)
+      const capabilitiesWithCounts = coreCapabilities.map((core: any, idx: number) => {
+        const domains = Array.isArray(domainResults[idx]) ? domainResults[idx] : [];
+        return {
+          ...core,
+          color: core.color || "#008C8C",
+          // store count on the capability so the parent can pass it to the card
+          totalDomainCount: domains.length,
+        };
+      });
+
+      setCapabilityList(capabilitiesWithCounts);
+    } catch (error) {
+      console.error("Error fetching capabilities with domain counts:", error);
+    }
+  };
+
   useEffect(() => {
+    // Call both to preserve existing behaviour and ensure counts are populated
     fetchCapabilities();
+    fetchCapabilitiesWithDomainCounts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleExpandAll = () => {
@@ -319,6 +351,7 @@ const Template = () => {
                 [capability.id]: !prev[capability.id],
               }));
             }}
+            totalDomains={capability.totalDomainCount ?? 0}
           />
         ))}
       </Box>

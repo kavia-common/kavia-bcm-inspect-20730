@@ -1,25 +1,19 @@
 {
-  "root": true,
-  "env": {
-    "browser": true,
-    "es2022": true,
-    "node": true
-  },
-  "parserOptions": {
-    "ecmaVersion": "latest",
-    "sourceType": "module"
-  },
-  "plugins": [
-    "react-hooks"
-  ],
   "extends": [
     "react-app",
-    "react-app/jest",
-    "plugin:react-hooks/recommended"
+    "react-app/jest"
   ],
   "rules": {
-    // Ensure the plugin rules are defined explicitly to avoid resolution issues
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn"
-  }
+    // Add any project-specific rules here, but do not re-declare react-hooks plugin rules.
+    // Example overrides (kept minimal to avoid conflicts):
+    // "no-console": "warn"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.ts", "**/*.tsx"],
+      "rules": {
+        // TypeScript-specific overrides can go here if needed.
+      }
+    }
+  ]
 }

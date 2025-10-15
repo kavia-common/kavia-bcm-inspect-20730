@@ -972,6 +972,8 @@
 // };
 
 // export default CustomEditDialog;
+
+
 import React, { useEffect } from "react";
 import {
   Dialog,
@@ -1468,18 +1470,18 @@ const CustomEditDialog: React.FC<CustomEditDialogProps> = ({
     <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
       <Box
         sx={{
-          backgroundColor: "white",
-          color: "black",
+          backgroundColor: "#008C8C",
+          color: "white",
           padding: 2,
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
         }}
       >
-        <DialogTitle margin={-2} sx={{ fontWeight: "bold", color: "black" }}>
+        <DialogTitle margin={-2} sx={{ fontWeight: "bold", color: "white" }}>
           Change Mapping
         </DialogTitle>
-        <IconButton onClick={onClose} sx={{ color: "black" }}>
+        <IconButton onClick={onClose} sx={{ color: "white" }}>
           <CloseIcon />
         </IconButton>
       </Box>
@@ -1930,38 +1932,38 @@ const CustomEditDialog: React.FC<CustomEditDialogProps> = ({
         }}
       >
         <CustomButton
-          title="Cancel"
-          backgroundColor="white"
-          color="black"
-          handleClick={onClose}
-          sx={{
-            color: "#1D1F20",
-            borderColor: "#ccc",
-            padding: "8px 16px",
-            fontWeight: "bold",
-            textTransform: "none",
-            borderRadius: "8px",
-            width: "45%",
-          }}
-        />
-        <CustomButton
-          title="Save"
-          backgroundColor="#1976d2"
-          color="white"
-          handleClick={formatAndSave}
-          sx={{
-            backgroundColor: "#1976d2",
-            color: "white",
-            padding: "8px 16px",
-            fontWeight: "bold",
-            textTransform: "none",
-            borderRadius: "8px",
-            width: "45%",
-            "&:hover": {
-              backgroundColor: "#155ab0",
-            },
-          }}
-        />
+  title="Cancel"
+  backgroundColor="#F9FAFB"
+  color="#1F2937"
+  handleClick={onClose}
+  sx={{
+    color: "#1F2937",
+    borderColor: "#1F2937",
+    padding: "8px 16px",
+    fontWeight: "bold",
+    textTransform: "none",
+    borderRadius: "8px",
+    width: "45%",
+  }}
+/>
+<CustomButton
+  title="Save"
+  backgroundColor="#008C8C"
+  color="white"
+  handleClick={formatAndSave}
+  sx={{
+    backgroundColor: "#008C8C",
+    color: "white",
+    padding: "8px 16px",
+    fontWeight: "bold",
+    textTransform: "none",
+    borderRadius: "8px",
+    width: "45%",
+    "&:hover": {
+      backgroundColor: "#007070",
+    },
+  }}
+/>
       </DialogActions>
     </Dialog>
   );
